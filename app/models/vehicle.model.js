@@ -8,7 +8,7 @@ module.exports = (sequelize, Sequelize) => {
             autoIncrement: true
         },
         vehicletype: {
-            type: Sequelize.STRING,
+            type: Sequelize.ENUM('CAR','VAN','BUS'),
             unique: true,
             allowNull: false,
         },

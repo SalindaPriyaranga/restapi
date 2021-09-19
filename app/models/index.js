@@ -1,5 +1,5 @@
-const dbConfig = require("../config/db.config.js");
-const Sequelize = require("sequelize");
+const dbConfig = require('../config/db.config.js');
+const Sequelize = require('sequelize');
 
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
@@ -32,8 +32,29 @@ sequelize
 
 db.user = require("./user.model")(sequelize, Sequelize);
 db.role = require("./role.model")(sequelize, Sequelize);
-db.userdetail  = require("./userdetail.model") (sequelize, Sequelize);
-db.vehicle  = require("./vehicle.model") (sequelize, Sequelize);
+db.userdetail = require("./userdetail.model")(sequelize, Sequelize);
+db.vehicle = require("./vehicle.model")(sequelize, Sequelize);
+
+//many to many(user-role)
+db.user.belongsToMany(db.role, {
+    through: "user_role",
+    as: "roles",
+    foreignKey: "role_id",
+
+});
+db.role.belongsToMany(db.user, {
+    through: "user_role",
+    as: "users",
+    foreignKey: "user_id",
+
+});
+//many to one (user-vehicle)
+db.user.hasMany(db.vehicle);
+db.vehicle.belongsTo(db.user);
+
+//one to one
+db.user.hasOne(db.userdetail, {});
+db.userdetail.belongsTo(db.user);
 
 
 
