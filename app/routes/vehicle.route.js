@@ -6,6 +6,6 @@ router.get('/', vehicleController.getAllVehicle);
 router.get('/:id', vehicleController.getSingleVehicle);
 router.post('/', vehicleController.createVehicle);
 router.put('/', vehicleController.updateVehicle);
-//router.put('/:id', vehicleController.deleteVehicle);
+// router.put('/:id', vehicleController.deleteVehicle);
 
 module.exports = router;

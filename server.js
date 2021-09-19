@@ -2,9 +2,10 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const db = require("./app/models");
-const userRoute= require('./app/routes/user.route');
-const vehicleRoute= require('./app/routes/vehicle.route');
-
+const userRoute = require('./app/routes/user.route');
+const vehicleRoute = require('./app/routes/vehicle.route');
+const roleRoute = require('./app/routes/role.route');
+const userDetailRoute = require('./app/routes/userdetail.route');
 
 const app = express();
 app.use(cors());
@@ -26,6 +27,9 @@ app.get('/', (req, res) => {
 //routes
 app.use('/user', userRoute );
 app.use('/vehicle', vehicleRoute );
+app.use('/role', roleRoute );
+app.use('/userdetail', userDetailRoute );
+
 
 const PORT = 3003;
 
