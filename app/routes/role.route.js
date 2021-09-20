@@ -4,4 +4,6 @@ const roleController= require('../controllers/role.controller');
 
 router.get('/', roleController.getAllRole);
 
-module.exports = router;
+router.get('/:id', roleController.getSingleRole);
+
+module.exports = router ;
