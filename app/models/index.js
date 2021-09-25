@@ -25,7 +25,7 @@ sequelize
         console.log('Connection has been established succefully');
     })
     .catch(err => {
-        console.err('unable to connect to the server:', err);
+        console.log('unable to connect to the server:', err);
     })
 
 //models (tables)

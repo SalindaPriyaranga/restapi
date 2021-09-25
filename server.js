@@ -6,6 +6,7 @@ const userRoute = require('./app/routes/user.route');
 const vehicleRoute = require('./app/routes/vehicle.route');
 const roleRoute = require('./app/routes/role.route');
 const userDetailRoute = require('./app/routes/userdetail.route');
+const authRoute = require('./app/routes/auth.route');
 
 const app = express();
 app.use(cors());
@@ -23,13 +24,15 @@ db.sequelize.sync({ force: false })
 app.get('/', (req, res) => {
     res.send("Welcome to my ec")
 })
+//middleware
+const { veryfyToken } = require ('./app/middlewares/auth.middleware')
 
 //routes
 app.use('/user', userRoute );
-app.use('/vehicle', vehicleRoute );
-app.use('/role', roleRoute );
+app.use('/vehicle',veryfyToken ,vehicleRoute );
+app.use('/role', veryfyToken,roleRoute );
 app.use('/userdetail', userDetailRoute );
-
+app.use('/auth', authRoute );
 
 const PORT = 3003;
 

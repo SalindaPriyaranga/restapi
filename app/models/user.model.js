@@ -13,13 +13,13 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false,
         },
         password: {
-            type: Sequelize.STRING(30),
-            unique: true,
+            type: Sequelize.STRING,
+            
             allowNull: false,
         },
         status: {
             type: Sequelize.BOOLEAN ,
-            unique: true,
+           
             allowNull: false,
         }
 

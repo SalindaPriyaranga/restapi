@@ -1,6 +1,8 @@
 const { response } = require('express');
 const db = require('../models');
 const User = db.user;
+const bcrypt = require('bcrypt') ;
+const saltRounds = 10 ;
 
 //DBObject.method(where,sort,order).then().catch()
 exports.getAllUser = (req, res) => {
@@ -41,10 +43,16 @@ exports.getSingleUser = (req, res) => {
             });
         });
 }
+
+
 exports.createUser = async (req, res) => {
+    const password =req.body.password ;
+    const encryptedPassword = await bcrypt.hash( password , saltRounds );
+    
+
     const user = {
-        username: req.body.username,
-        password: req.body.password,
+        username: req.body.username ,
+        password: encryptedPassword ,
         status: req.body.status,
     }
 

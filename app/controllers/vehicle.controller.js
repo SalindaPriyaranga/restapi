@@ -3,7 +3,7 @@ const db = require('../models');
 
 const Vehicle = db.vehicle;
 
-exports.getAllVehicle = (req, res) => {
+exports.getAllVehicle = async (req, res) => {
     Vehicle.findAll()
         .then(data => {
             if (data.length != 0) {
@@ -16,11 +16,11 @@ exports.getAllVehicle = (req, res) => {
         }).catch(err => {
             res.status(500).send(
                 {
-                    // message: err.message || 'Not Found'
+                    message: err.message || 'Not Found'
                 }
             );
 
-        })
+        });
 }
 exports.getSingleVehicle = (req, res) => {
     const id = req.params.id;
@@ -36,7 +36,7 @@ exports.getSingleVehicle = (req, res) => {
             }
         })
         .catch(err => {
-           
+            // console.log(err);
             res.status(500).send({
                 message: err.message || 'NOT FOUND'
             });
